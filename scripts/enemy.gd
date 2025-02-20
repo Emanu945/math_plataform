@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 800.0
+const SPEED = 900.0
 const JUMP_VELOCITY = -400.0
 
 @onready var wall_detector := $wall_detector as RayCast2D
