@@ -1,17 +1,18 @@
 [gd_scene load_steps=8 format=3 uid="uid://b148qjwjbmkrd"]
 
-[ext_resource type="Texture2D" uid="uid://bh8asc2pd1ns5" path="res://sprites/robot.png" id="1_1kf30"]
+[ext_resource type="Texture2D" uid="uid://hpx55cbyyhv5" path="res://sprites/robot.png" id="1_1kf30"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_8xbtv"]
-[ext_resource type="Texture2D" uid="uid://c1fkms2xqn0d0" path="res://sprites/robot_run.png" id="2_skdl7"]
+[ext_resource type="Texture2D" uid="uid://dpma0sjlfkq2v" path="res://sprites/robot_run.png" id="2_skdl7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhddh"]
-size = Vector2(16, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kc6ge"]
+radius = 8.0
+height = 16.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vfp3m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipqdj"]
 atlas = ExtResource("1_1kf30")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ncgg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qmap"]
 atlas = ExtResource("2_skdl7")
 region = Rect2(0, 0, 16, 16)
 
@@ -19,7 +20,7 @@ region = Rect2(0, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vfp3m")
+"texture": SubResource("AtlasTexture_ipqdj")
 }],
 "loop": true,
 "name": &"idle",
@@ -27,7 +28,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ncgg")
+"texture": SubResource("AtlasTexture_0qmap")
 }],
 "loop": true,
 "name": &"run",
@@ -39,12 +40,21 @@ position = Vector2(67, 57)
 script = ExtResource("1_8xbtv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jhddh")
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_kc6ge")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
+visibility_layer = 5
+position = Vector2(0, -1)
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_frdos")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.784232
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="wall_detector" type="RayCast2D" parent="."]
+light_mask = 5
+visibility_layer = 7
+target_position = Vector2(-9, 0)
+collision_mask = 5

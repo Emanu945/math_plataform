@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_glo3h"]
 [ext_resource type="Texture2D" uid="uid://cej0efr515qvd" path="res://sprites/DinoSprites - vita.png" id="2_nsdif"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xst4b"]
-size = Vector2(14, 17)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b3wkx"]
+radius = 7.0
+height = 19.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sojw7"]
 atlas = ExtResource("2_nsdif")
@@ -133,10 +134,10 @@ script = ExtResource("1_glo3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, -0.5)
-shape = SubResource("RectangleShape2D_xst4b")
+shape = SubResource("CapsuleShape2D_b3wkx")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(5, -1)
+position = Vector2(4, 0)
 sprite_frames = SubResource("SpriteFrames_mlbju")
 animation = &"idle"
 autoplay = "idle"
