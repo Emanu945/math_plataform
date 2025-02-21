@@ -9,6 +9,9 @@ const JUMP_VELOCITY = -400.0
 
 var direction := -1
 
+func dano():
+	animation.play("hit")
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

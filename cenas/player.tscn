@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://df673p31i2oja"]
+[gd_scene load_steps=21 format=3 uid="uid://df673p31i2oja"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_glo3h"]
 [ext_resource type="Texture2D" uid="uid://cej0efr515qvd" path="res://sprites/DinoSprites - vita.png" id="2_nsdif"]
+[ext_resource type="PackedScene" uid="uid://drdaqua2b3by4" path="res://cenas/hitbox.tscn" id="3_v11ci"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b3wkx"]
 radius = 7.0
@@ -128,6 +129,9 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lecp8"]
+size = Vector2(14, 16)
+
 [node name="player" type="CharacterBody2D"]
 position = Vector2(149, 85)
 script = ExtResource("1_glo3h")
@@ -139,9 +143,8 @@ shape = SubResource("CapsuleShape2D_b3wkx")
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, 0)
 sprite_frames = SubResource("SpriteFrames_mlbju")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
-frame_progress = 0.657578
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -150,3 +153,11 @@ zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 100
 limit_bottom = 0
+
+[node name="hitbox" parent="." instance=ExtResource("3_v11ci")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visibility_layer = 22
+position = Vector2(4, -2)
+shape = SubResource("RectangleShape2D_lecp8")
+debug_color = Color(0.975141, 0, 0.421607, 0.42)
