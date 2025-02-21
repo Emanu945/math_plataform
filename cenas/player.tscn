@@ -5,9 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://drdaqua2b3by4" path="res://cenas/hitbox.tscn" id="3_v11ci"]
 [ext_resource type="Script" path="res://scripts/remote.gd" id="4_3323e"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b3wkx"]
-radius = 7.0
-height = 19.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvahn"]
+size = Vector2(13, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sojw7"]
 atlas = ExtResource("2_nsdif")
@@ -77,7 +76,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m6q74")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -131,21 +130,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lecp8"]
-size = Vector2(14, 16)
+size = Vector2(15, 18)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(149, 85)
 script = ExtResource("1_glo3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, -0.5)
-shape = SubResource("CapsuleShape2D_b3wkx")
+position = Vector2(3.5, 0.5)
+shape = SubResource("RectangleShape2D_kvahn")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, 0)
 sprite_frames = SubResource("SpriteFrames_mlbju")
 animation = &"hit"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -153,11 +154,19 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 visibility_layer = 22
-position = Vector2(4, -2)
+position = Vector2(3.5, 0)
 shape = SubResource("RectangleShape2D_lecp8")
 debug_color = Color(0.975141, 0, 0.421607, 0.42)
 
 [node name="Remote" type="RemoteTransform2D" parent="."]
 script = ExtResource("4_3323e")
+
+[node name="ray_right" type="RayCast2D" parent="."]
+position = Vector2(8, 0)
+target_position = Vector2(4, 0)
+
+[node name="ray_left" type="RayCast2D" parent="."]
+position = Vector2(-1, 0)
+target_position = Vector2(-4, 0)
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

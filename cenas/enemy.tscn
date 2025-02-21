@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drdaqua2b3by4" path="res://cenas/hitbox.tscn" id="5_5adsm"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="6_8o3c6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7qp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sabg"]
 size = Vector2(16, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awcf3"]
@@ -65,13 +65,13 @@ script = ExtResource("1_8xbtv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_bm7qp")
+shape = SubResource("RectangleShape2D_7sabg")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 visibility_layer = 6
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_frdos")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
