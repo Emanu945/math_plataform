@@ -7,9 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://drdaqua2b3by4" path="res://cenas/hitbox.tscn" id="5_5adsm"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="6_8o3c6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kc6ge"]
-radius = 8.0
-height = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7qp"]
+size = Vector2(16, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awcf3"]
 atlas = ExtResource("2_4wufx")
@@ -58,24 +57,22 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbpgg"]
-size = Vector2(16, 4)
+size = Vector2(16, 2)
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(65, 57)
 script = ExtResource("1_8xbtv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_kc6ge")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_bm7qp")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 visibility_layer = 6
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_frdos")
-animation = &"hit"
+animation = &"idle"
 autoplay = "idle"
-frame = 1
-frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

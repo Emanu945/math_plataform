@@ -6,6 +6,7 @@ const JUMP_SOUND = preload("res://sfx/jump_player.mp3")
 
 @onready var animation := $anim as AnimatedSprite2D
 @onready var jump_player= AudioStreamPlayer2D.new()
+@onready var remote_transform := $Remote as RemoteTransform2D
 
 func _ready() -> void:
 	jump_player.stream = JUMP_SOUND
@@ -35,3 +36,11 @@ func _physics_process(delta: float) -> void:
 		animation.play("idle")
 
 	move_and_slide()
+
+func follow_camera(camera):
+	var camera_path = camera.get_path()
+	remote_transform.remote_path = camera_path
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		queue_free()
+	pass # Replace with function body.
