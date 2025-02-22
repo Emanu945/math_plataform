@@ -4,15 +4,27 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -380.0
 const JUMP_SOUND = preload("res://sfx/jump_player.mp3")
 
-@export var player_life := 1
+
 var golpe := Vector2.ZERO
+@export var player_life := 2
 @onready var animation := $anim as AnimatedSprite2D
 @onready var jump_player= AudioStreamPlayer2D.new()
 @onready var remote_transform := $Remote as RemoteTransform2D
+@onready var timer := $Timer as Timer
 
 func _ready() -> void:
 	jump_player.stream = JUMP_SOUND
 	add_child(jump_player)
+	
+	if not timer:
+		timer = Timer.new()
+		timer.name = "Timer"
+		add_child(timer)
+		timer.wait_time = 0.55
+		timer.one_shot = true
+		timer.timeout.connect(_on_timer_timeout)
+func _on_timer_timeout() -> void:
+	owner.queue_free()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -38,6 +50,12 @@ func _physics_process(delta: float) -> void:
 		animation.play("idle")
 	if golpe != Vector2.ZERO:
 		velocity = golpe
+		animation.play("hit")
+	elif player_life < 0:
+		animation.play("hit")
+		timer.start()
+		queue_free()
+		
 	move_and_slide()
 
 func follow_camera(camera):
@@ -53,12 +71,8 @@ func dano(golpe_force := Vector2.ZERO, duration := 0.25):
 		print(player_life)
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		if player_life < 0:
-			queue_free()
-		else:
-			animation.play("hit")
-			if $ray_right.is_colliding():
+		if $ray_right.is_colliding():
 				dano(Vector2(-200,-200))
-			elif $ray_left.is_colliding():
+		elif $ray_left.is_colliding():
 				dano(Vector2(200,200))
 	pass # Replace with function body.
