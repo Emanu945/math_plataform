@@ -143,10 +143,9 @@ shape = SubResource("RectangleShape2D_kvahn")
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, 0)
 sprite_frames = SubResource("SpriteFrames_mlbju")
-animation = &"hit"
+animation = &"idle"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
+frame_progress = 0.490424
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
