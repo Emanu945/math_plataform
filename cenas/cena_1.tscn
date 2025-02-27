@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bte8elf43vkun"]
+[gd_scene load_steps=12 format=3 uid="uid://bte8elf43vkun"]
 
 [ext_resource type="Texture2D" uid="uid://bpglwd74720on" path="res://tiles/tileset_32x32(new).png" id="1_2irn6"]
 [ext_resource type="Texture2D" uid="uid://cd7ax3evtssk5" path="res://background/background.png" id="1_du4cl"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://b5gsoj006kd1n" path="res://background/bg_1.png" id="3_lyxay"]
 [ext_resource type="PackedScene" uid="uid://b148qjwjbmkrd" path="res://cenas/enemy.tscn" id="3_vb4ck"]
 [ext_resource type="Texture2D" uid="uid://dmjciwja58nko" path="res://background/bg_2.png" id="4_i2oek"]
-[ext_resource type="Texture2D" uid="uid://drp825jp2ayar" path="res://sprites/hud_icon.png" id="9_bq3yh"]
 [ext_resource type="Texture2D" uid="uid://bvg6jkjmu30qr" path="res://sprites/placa.png" id="10_vjjte"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yoiwx"]
@@ -261,61 +260,6 @@ texture = ExtResource("1_2irn6")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yoiwx")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r08m7"]
-atlas = ExtResource("9_bq3yh")
-region = Rect2(0, 34, 39, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b010s"]
-atlas = ExtResource("9_bq3yh")
-region = Rect2(40, 34, 39, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3odk7"]
-atlas = ExtResource("9_bq3yh")
-region = Rect2(80, 34, 39, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pi3ny"]
-atlas = ExtResource("9_bq3yh")
-region = Rect2(0, 0, 39, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o7n2d"]
-atlas = ExtResource("9_bq3yh")
-region = Rect2(40, 0, 39, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5a42d"]
-atlas = ExtResource("9_bq3yh")
-region = Rect2(80, 0, 39, 34)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kt8nb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r08m7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b010s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3odk7")
-}],
-"loop": true,
-"name": &"hit_icon",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pi3ny")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o7n2d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5a42d")
-}],
-"loop": true,
-"name": &"idle_icon",
-"speed": 5.0
-}]
-
 [node name="level_1" type="Node2D"]
 light_mask = 7
 visibility_layer = 2
@@ -385,9 +329,20 @@ limit_left = 0
 limit_top = 100
 limit_bottom = 0
 
-[node name="teste_hud" type="AnimatedSprite2D" parent="."]
-position = Vector2(25, 119)
-sprite_frames = SubResource("SpriteFrames_kt8nb")
-animation = &"idle_icon"
-autoplay = "idle_icon"
-frame_progress = 0.231929
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="container" type="MarginContainer" parent="HUD/control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="icon" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2

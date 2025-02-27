@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpma0sjlfkq2v"
-path="res://.godot/imported/robot_run.png-1af05f5ae234632be994420bfefca49e.ctex"
+uid="uid://drp825jp2ayar"
+path="res://.godot/imported/hud_icon.png-b047bec0c06ee005d56e7f94b4b5b376.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/robot_run.png"
-dest_files=["res://.godot/imported/robot_run.png-1af05f5ae234632be994420bfefca49e.ctex"]
+source_file="res://hud/hud_icon.png"
+dest_files=["res://.godot/imported/hud_icon.png-b047bec0c06ee005d56e7f94b4b5b376.ctex"]
 
 [params]
 

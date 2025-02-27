@@ -1,39 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://b148qjwjbmkrd"]
+[gd_scene load_steps=13 format=3 uid="uid://b148qjwjbmkrd"]
 
 [ext_resource type="Texture2D" uid="uid://hpx55cbyyhv5" path="res://sprites/robot.png" id="1_1kf30"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_8xbtv"]
-[ext_resource type="Texture2D" uid="uid://df8vrk0tka117" path="res://sprites/robot_hit.png" id="2_4wufx"]
-[ext_resource type="Texture2D" uid="uid://dpma0sjlfkq2v" path="res://sprites/robot_run.png" id="2_skdl7"]
 [ext_resource type="PackedScene" uid="uid://drdaqua2b3by4" path="res://cenas/hitbox.tscn" id="5_5adsm"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="6_8o3c6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sabg"]
-size = Vector2(16, 14)
+size = Vector2(16, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_awcf3"]
-atlas = ExtResource("2_4wufx")
-region = Rect2(0, 0, 17, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5os8q"]
+atlas = ExtResource("1_1kf30")
+region = Rect2(18, 0, 18, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qrxmk"]
-atlas = ExtResource("2_4wufx")
-region = Rect2(17, 0, 17, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2krg"]
+atlas = ExtResource("1_1kf30")
+region = Rect2(36, 0, 18, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipqdj"]
 atlas = ExtResource("1_1kf30")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h5cha"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qmap"]
-atlas = ExtResource("2_skdl7")
+atlas = SubResource("CompressedTexture2D_h5cha")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_frdos"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_awcf3")
+"texture": SubResource("AtlasTexture_5os8q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qrxmk")
+"texture": SubResource("AtlasTexture_l2krg")
 }],
 "loop": false,
 "name": &"hit",
@@ -64,7 +64,7 @@ position = Vector2(65, 57)
 script = ExtResource("1_8xbtv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_7sabg")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
@@ -73,6 +73,8 @@ scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_frdos")
 animation = &"hit"
 autoplay = "idle"
+frame = 1
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -89,3 +91,4 @@ script = ExtResource("6_8o3c6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_sbpgg")
+debug_color = Color(0.921183, 0.252696, 0.315318, 0.42)
