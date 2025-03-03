@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dniqbjjmvqawd"]
+
+[ext_resource type="Texture2D" uid="uid://cdfhxcpgoue8g" path="res://mini iu/Dialog_Box(16 x 16).png" id="1_7l5t8"]
+[ext_resource type="Script" path="res://scripts/dialog_box.gd" id="1_uxnud"]
+
+[node name="dialog_box" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_uxnud")
+
+[node name="background" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_7l5t8")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="label_margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="text_label" type="Label" parent="label_margin"]
+texture_repeat = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
+
+[node name="letter_time_display" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="letter_time_display" to="." method="_on_letter_time_display_timeout"]

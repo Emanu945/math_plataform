@@ -3,18 +3,22 @@ extends CharacterBody2D
 const SPEED = 280.0
 const JUMP_VELOCITY = -380.0
 const JUMP_SOUND = preload("res://sfx/jump_player.mp3")
+const HIT_SOUND = preload("res://sfx/hit_player.wav")
 
 
 var golpe := Vector2.ZERO
 @export var player_life := 2
 @onready var animation := $anim as AnimatedSprite2D
-@onready var jump_player= AudioStreamPlayer2D.new()
+@onready var jump_player = AudioStreamPlayer2D.new()
+@onready var hit_sound = AudioStreamPlayer2D.new()
 @onready var remote_transform := $Remote as RemoteTransform2D
 @onready var timer := $Timer as Timer
 
 func _ready() -> void:
 	jump_player.stream = JUMP_SOUND
+	hit_sound.stream = HIT_SOUND
 	add_child(jump_player)
+	add_child(hit_sound)
 	
 	if not timer:
 		timer = Timer.new()
@@ -63,6 +67,7 @@ func follow_camera(camera):
 	remote_transform.remote_path = camera_path
 func dano(golpe_force := Vector2.ZERO, duration := 0.25):
 	player_life -= 1
+	hit_sound.play()
 	if golpe_force != Vector2.ZERO:
 		golpe = golpe_force
 		
