@@ -12,19 +12,19 @@ config_version=5
 
 config/name="math_plataform"
 run/main_scene="res://cenas/cena_1.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
+Globals="*res://singletons/globals.gd"
 DialogManager="*res://singletons/dialog_manager.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=320
-window/size/mode=2
+window/size/mode=3
 window/stretch/scale=2.0
 
 [input]

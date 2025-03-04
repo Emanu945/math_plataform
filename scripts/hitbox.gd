@@ -11,6 +11,7 @@ func _ready() -> void:
 		timer.one_shot = true
 		timer.timeout.connect(_on_timer_timeout)
 func _on_timer_timeout() -> void:
+	Globals.score += 100
 	owner.queue_free()
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "player":

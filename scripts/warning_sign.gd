@@ -1,7 +1,10 @@
 extends Node2D
 
+const READ = preload("res://sfx/message.wav")
+
 @onready var texture: Sprite2D = $texture
 @onready var area_sign: Area2D = $area_sign
+@onready var read_placa = AudioStreamPlayer2D.new()
 
 const lines : Array[String] = [
 	"Olá, aventureiro!",
@@ -11,10 +14,14 @@ const lines : Array[String] = [
 	"Boa sorte!"
 ]
 
+func _ready() -> void:
+	read_placa.stream = READ
+	add_child(read_placa)
 func _unhandled_input(event):
 	if area_sign.get_overlapping_bodies().size() > 0:
 		texture.show()
 		if event.is_action_pressed("advance_message") && !DialogManager.is_message_active:
+			read_placa.play()
 			print("placa lida")
 			texture.hide()
 			DialogManager.start_message(global_position, lines)

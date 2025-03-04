@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://b148qjwjbmkrd"]
 
 [ext_resource type="Texture2D" uid="uid://hpx55cbyyhv5" path="res://sprites/robot.png" id="1_1kf30"]
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_8xbtv"]
+[ext_resource type="Script" uid="uid://j0nnodl56luw" path="res://scripts/enemy.gd" id="1_8xbtv"]
 [ext_resource type="PackedScene" uid="uid://drdaqua2b3by4" path="res://cenas/hitbox.tscn" id="5_5adsm"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="6_8o3c6"]
+[ext_resource type="Script" uid="uid://41m2gcigrwr2" path="res://scripts/hitbox.gd" id="6_8o3c6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sabg"]
 size = Vector2(17, 13)
