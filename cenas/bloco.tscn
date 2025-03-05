@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://df6hsk8kc1f5g"]
+
+[ext_resource type="Script" uid="uid://c7ls2vraylht7" path="res://scripts/bloco.gd" id="1_8fjef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fjef"]
+size = Vector2(15, 16)
+
+[node name="Bloco" type="RigidBody2D"]
+texture_filter = 1
+texture_repeat = 1
+script = ExtResource("1_8fjef")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 11
+shape = SubResource("RectangleShape2D_8fjef")

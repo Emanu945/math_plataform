@@ -132,7 +132,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lecp8"]
 size = Vector2(15, 18)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(149, 85)
 script = ExtResource("1_glo3h")
 
