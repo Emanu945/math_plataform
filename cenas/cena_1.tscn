@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bte8elf43vkun"]
+[gd_scene load_steps=29 format=3 uid="uid://bte8elf43vkun"]
 
 [ext_resource type="Texture2D" uid="uid://bpglwd74720on" path="res://tiles/tileset_32x32(new).png" id="1_2irn6"]
 [ext_resource type="Texture2D" uid="uid://cd7ax3evtssk5" path="res://background/background.png" id="1_du4cl"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://d0tu2qu2qspyg" path="res://scripts/hud_manager.gd" id="12_v7s0r"]
 [ext_resource type="Texture2D" uid="uid://drp825jp2ayar" path="res://hud/hud_icon.png" id="13_cxrbj"]
 [ext_resource type="PackedScene" uid="uid://df6hsk8kc1f5g" path="res://cenas/bloco.tscn" id="15_orkx4"]
+[ext_resource type="PackedScene" uid="uid://dx78i3ujea73i" path="res://cenas/chest.tscn" id="16_we2b2"]
+[ext_resource type="PackedScene" uid="uid://bmr3qvfm57wsw" path="res://cenas/npc.tscn" id="17_wxqkj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yoiwx"]
 texture = ExtResource("1_2irn6")
@@ -395,7 +397,8 @@ position = Vector2(88, 230)
 script = ExtResource("10_vdlq6")
 
 [node name="texture" type="Sprite2D" parent="warning_sign"]
-visible = false
+light_mask = 0
+visibility_layer = 0
 position = Vector2(1, -15)
 texture = ExtResource("11_ov6gi")
 region_enabled = true
@@ -542,17 +545,16 @@ vertical_alignment = 1
 [node name="clock_timer" type="Timer" parent="HUD/control"]
 autostart = true
 
-[node name="Bloco0" parent="." instance=ExtResource("15_orkx4")]
-position = Vector2(155, 203)
-
-[node name="Bloco8" parent="." instance=ExtResource("15_orkx4")]
-position = Vector2(153, 121)
-number = 8
-
 [node name="Bloco9" parent="." instance=ExtResource("15_orkx4")]
-position = Vector2(142, 157)
+position = Vector2(595, 215)
 number = 9
 target_position = Vector2(174, 240)
+
+[node name="chest9" parent="." instance=ExtResource("16_we2b2")]
+position = Vector2(650, 232)
+
+[node name="npc" parent="." instance=ExtResource("17_wxqkj")]
+position = Vector2(512, 231)
 
 [connection signal="body_entered" from="warning_sign/area_sign" to="warning_sign" method="_on_area_sign_body_entered"]
 [connection signal="body_exited" from="warning_sign/area_sign" to="warning_sign" method="_on_area_sign_body_exited"]

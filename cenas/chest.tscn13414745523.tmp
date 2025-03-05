@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://dx78i3ujea73i"]
+
+[ext_resource type="Script" uid="uid://diry3dt5smxv1" path="res://scripts/chest.gd" id="1_nbfit"]
+[ext_resource type="Texture2D" uid="uid://bo0amcogo6r4h" path="res://sprites/chest.png" id="2_scyjk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fmub"]
+atlas = ExtResource("2_scyjk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31ont"]
+atlas = ExtResource("2_scyjk")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsd7j"]
+atlas = ExtResource("2_scyjk")
+region = Rect2(34, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ipolt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fmub")
+}],
+"loop": true,
+"name": &"idle_chest",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31ont")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsd7j")
+}],
+"loop": false,
+"name": &"open_chest",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34w5c"]
+size = Vector2(15, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w623t"]
+
+[node name="chest" type="StaticBody2D"]
+collision_mask = 4
+script = ExtResource("1_nbfit")
+correct_number = 9
+
+[node name="anim_chest" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ipolt")
+animation = &"open_chest"
+autoplay = "idle_chest"
+frame = 1
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_34w5c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_w623t")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="block_deposited" from="." to="." method="_on_block_deposited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

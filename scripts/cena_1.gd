@@ -4,10 +4,13 @@ extends Node2D
 @onready var camera := $camera as Camera2D
 @onready var control: Control = $HUD/control
 @onready var anim_hud: AnimatedSprite2D = $HUD/control/container/life_container/anim_hud
-@onready var blocos = [$Bloco0, $Bloco8, $Bloco9]
-
+@onready var blocos = [$Bloco9]
+@onready var bau9 = $chest9
+@onready var npc = $npc
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	bau9.block_deposited.connect(npc._on_block_deposited)
+	bau9.block_deposited.connect(_on_bau9_deposited)
 	player.follow_camera(camera)
 	player.player_has_died.connect(reload_game)
 	control.time_is_up.connect(reload_game)
@@ -19,6 +22,9 @@ func _ready() -> void:
 func _on_bloco_reached_target():
 	print("Um bloco chegou à posição correta!")
 	check_all_positions()
+
+func _on_bau9_deposited():
+	print("Baú 0 ativado!")
 	
 func check_all_positions():
 	var all_correct = true

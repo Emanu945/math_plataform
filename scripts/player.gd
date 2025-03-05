@@ -5,7 +5,7 @@ const JUMP_VELOCITY = -380.0
 const JUMP_SOUND = preload("res://sfx/jump_player.mp3")
 const HIT_SOUND = preload("res://sfx/hit_player.wav")
 
-
+var speed = 200
 var golpe := Vector2.ZERO
 @onready var animation := $anim as AnimatedSprite2D
 @onready var jump_player = AudioStreamPlayer2D.new()
