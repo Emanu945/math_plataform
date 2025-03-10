@@ -8,6 +8,7 @@ size = Vector2(15, 16)
 [node name="Bloco" type="RigidBody2D" groups=["block"]]
 texture_filter = 1
 texture_repeat = 1
+center_of_mass_mode = 1
 script = ExtResource("1_8fjef")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

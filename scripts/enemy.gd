@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 1000.0
+const SPEED = 1500.0
 const JUMP_VELOCITY = -400.0
 const HIT_ROBOT = preload("res://sfx/robot_hit.wav")
 

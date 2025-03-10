@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6x8l6stmtl55"]
+
+[ext_resource type="Texture2D" uid="uid://cdajqgsd141u7" path="res://mini_ui_buttons/ui_buttons_arrow_left_NORMAL.png" id="1_xchhf"]
+[ext_resource type="Texture2D" uid="uid://ccgecm2xrv18e" path="res://mini_ui_buttons/ui_buttons_arrow_left_PRESSED.png" id="2_ecnyy"]
+[ext_resource type="Texture2D" uid="uid://bfvnr7vxci7fb" path="res://mini_ui_buttons/ui_buttons_arrow_right_NORMAL.png" id="3_8tdu7"]
+[ext_resource type="Texture2D" uid="uid://2ihfjn356uwi" path="res://mini_ui_buttons/ui_buttons_arrow_right_PRESSED.png" id="4_khxuo"]
+[ext_resource type="Texture2D" uid="uid://blb8q4ityow0d" path="res://mini_ui_buttons/ui_buttons_arrow_up_NORMAL.png" id="5_xaqul"]
+[ext_resource type="Texture2D" uid="uid://bcrnfocwqbf8x" path="res://mini_ui_buttons/ui_buttons_arrow_up_PRESSED.png" id="6_yaa26"]
+[ext_resource type="Texture2D" uid="uid://bci7ol0gtsmem" path="res://mini_ui_buttons/action_button.png" id="7_sxfvi"]
+
+[node name="controls" type="CanvasLayer"]
+
+[node name="ui_left" type="TouchScreenButton" parent="."]
+position = Vector2(13, 242)
+scale = Vector2(1.8125, 1.84873)
+texture_normal = ExtResource("1_xchhf")
+texture_pressed = ExtResource("2_ecnyy")
+action = "ui_left"
+visibility_mode = 1
+
+[node name="ui_right" type="TouchScreenButton" parent="."]
+position = Vector2(85.0001, 241)
+scale = Vector2(1.8125, 1.87998)
+texture_normal = ExtResource("3_8tdu7")
+texture_pressed = ExtResource("4_khxuo")
+action = "ui_right"
+visibility_mode = 1
+
+[node name="ui_jump" type="TouchScreenButton" parent="."]
+position = Vector2(565, 250)
+scale = Vector2(1.875, 1.875)
+texture_normal = ExtResource("5_xaqul")
+texture_pressed = ExtResource("6_yaa26")
+action = "ui_accept"
+visibility_mode = 1
+
+[node name="ui_interact" type="TouchScreenButton" parent="."]
+position = Vector2(563, 168)
+scale = Vector2(1.9375, 2.03125)
+texture_normal = ExtResource("7_sxfvi")
+texture_pressed = ExtResource("7_sxfvi")
+action = "interact"
+visibility_mode = 1

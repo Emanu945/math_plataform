@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://jrg5sumfahu2"]
+
+[ext_resource type="Script" uid="uid://cnomyfake7xau" path="res://scripts/pause_menu.gd" id="1_sx7qs"]
+[ext_resource type="Shader" uid="uid://uwh8pvnmdcud" path="res://shaders/blur_shader.gdshader" id="2_5pfmb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6po1l"]
+shader = ExtResource("2_5pfmb")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_0quve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg_overlay:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_61vbe"]
+resource_name = "pause_game"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg_overlay:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ob6ac"]
+resource_name = "resume_game"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg_overlay:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8x2wp"]
+_data = {
+&"RESET": SubResource("Animation_0quve"),
+&"pause_game": SubResource("Animation_61vbe"),
+&"resume_game": SubResource("Animation_ob6ac")
+}
+
+[node name="pause_menu" type="CanvasLayer"]
+script = ExtResource("1_sx7qs")
+
+[node name="bg_overlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6po1l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="animatior" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_8x2wp")
+}

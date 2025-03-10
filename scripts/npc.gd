@@ -1,32 +1,44 @@
 extends StaticBody2D
 
 const message = preload("res://sfx/message.wav")
-@onready var anim: AnimatedSprite2D = $anim_npc  # Sprite animado do NPC
-@onready var texture: Sprite2D = $texture  # Textura adicional que aparece na área
-@onready var area: Area2D = $Area2D  # Área para interação
+@onready var anim: AnimatedSprite2D = $anim_npc
+@onready var texture: Sprite2D = $texture
+@onready var area: Area2D = $Area2D
 @onready var message_sound = AudioStreamPlayer.new()
 
-var initial_lines: Array[String] = [
-	"Nossos números foram roubados",
+# Diálogos iniciais (configuráveis por nível no inspetor)
+@export var initial_lines: Array[String] = [
+	"Nossos números foram roubados",  # Padrão do nível 1
 	"Como posso saber quanto é 4+5?",
 	"Preciso da resposta correta dentro do baú"
 ]
-var success_lines: Array[String] = [
-	"Obrigado! Você encontrou o número 9!",
+
+# Diálogos de sucesso (configuráveis por nível no inspetor)
+@export var success_lines: Array[String] = [
+	"Obrigado! Você encontrou o número 9!",  # Padrão do nível 1
 	"Agora sei que 4+5 é 9!",
 	"Você é um verdadeiro herói!"
 ]
-var current_lines: Array[String] = initial_lines
+
+var current_lines: Array[String]
 var block_deposited: bool = false
 
 func _ready() -> void:
-	texture.hide()
 	message_sound.stream = message
 	add_child(message_sound)
 	if anim:
-		anim.play("idle_npc")  # Animação inicial do NPC
+		anim.play("idle_npc")
 	else:
 		print("Erro: AnimatedSprite2D 'anim_npc' não encontrado!")
+	if texture:
+		texture.hide()
+	else:
+		print("Erro: Sprite2D 'texture' não encontrado!")
+	
+	# Inicializa current_lines com o valor do inspetor
+	current_lines = initial_lines.duplicate()  # Usa uma cópia para evitar alterações no original
+	print("NPC inicializado - Diálogos iniciais do inspetor: ", initial_lines)
+	print("Current lines inicial: ", current_lines)
 
 func _physics_process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("player")
@@ -34,19 +46,21 @@ func _physics_process(delta: float) -> void:
 		var player_pos = player.global_position
 		var npc_pos = global_position
 		if player_pos.x < npc_pos.x:
-			anim.scale.x = -1  # Vira para a esquerda
+			anim.scale.x = -1
 		else:
-			anim.scale.x = 1  # Vira para a direita
+			anim.scale.x = 1
 
 func _on_area_2d_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		texture.show()  # Mostra a textura quando o jogador entra
-		print("Jogador entrou na área do NPC1 - Texture visível")
+		if texture:
+			texture.show()
+		print("Jogador entrou na área do NPC - Texture visível")
 
 func _on_area_2d_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
-		texture.hide()  # Esconde a textura quando o jogador sai
-		print("Jogador saiu da área do NPC1 - Texture escondida")
+		if texture:
+			texture.hide()
+		print("Jogador saiu da área do NPC - Texture escondida")
 		if DialogManager.is_message_active:
 			DialogManager.end_dialogue()
 
@@ -57,13 +71,13 @@ func _unhandled_input(event):
 		if body.is_in_group("player"):
 			in_area = true
 			break
-	print("Evento de entrada NPC1 - Pressionado: ", event.is_action_pressed("interact"), " | Na área: ", in_area, " | Corpos: ", bodies)
+	print("Evento de entrada NPC - Pressionado: ", event.is_action_pressed("interact"), " | Na área: ", in_area, " | Diálogo ativo: ", DialogManager.is_message_active)
 	if not in_area or not event.is_action_pressed("interact"):
-		return  # Bloqueia se fora da área ou não é "interact"
+		return
 	if not DialogManager.is_message_active:
-		print("NPC1 interagido - Iniciando diálogo com linhas: ", current_lines)
+		print("NPC interagido - Iniciando diálogo com linhas: ", current_lines)
 		if texture:
-			texture.hide()  # Esconde a textura ao iniciar o diálogo
+			texture.hide()
 		if message_sound:
 			DialogManager.start_message(global_position, current_lines, area)
 		else:
@@ -71,7 +85,7 @@ func _unhandled_input(event):
 
 func _on_block_deposited():
 	block_deposited = true
-	current_lines = success_lines
+	current_lines = success_lines.duplicate()  # Usa uma cópia do success_lines do inspetor
 	if anim:
-		anim.play('dialog_npc')  # Muda para a animação do NPC "feliz"
-		print("NPC1 agora está feliz!")
+		anim.play("dialog_npc")
+		print("NPC agora está feliz! - Diálogos de sucesso: ", current_lines)

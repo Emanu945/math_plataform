@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://c63h8o5a87lmv"]
+
+[ext_resource type="Texture2D" uid="uid://ymwgcs2v16ba" path="res://sprites/npc_2.png" id="1_6b2uv"]
+[ext_resource type="Script" uid="uid://2vivhjr8xjbb" path="res://scripts/npc_2.gd" id="1_mlrii"]
+[ext_resource type="Texture2D" uid="uid://d1gctv66ckbbo" path="res://mini iu/Speech_Emotes (16 x 16).png" id="3_runqu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlrii"]
+atlas = ExtResource("1_6b2uv")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rif0r"]
+atlas = ExtResource("1_6b2uv")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_runqu"]
+atlas = ExtResource("1_6b2uv")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pn2p"]
+atlas = ExtResource("1_6b2uv")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maman"]
+atlas = ExtResource("1_6b2uv")
+region = Rect2(384, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5y2oo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlrii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rif0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_runqu")
+}],
+"loop": true,
+"name": &"dialog_npc",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pn2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maman")
+}],
+"loop": true,
+"name": &"idle_npc",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yv0w"]
+size = Vector2(33, 21)
+
+[node name="npc2" type="StaticBody2D"]
+script = ExtResource("1_mlrii")
+
+[node name="anim_npc2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5y2oo")
+animation = &"dialog_npc"
+autoplay = "idle_npc"
+
+[node name="texture" type="Sprite2D" parent="."]
+position = Vector2(1, -17)
+texture = ExtResource("3_runqu")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_4yv0w")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

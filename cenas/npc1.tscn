@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmr3qvfm57wsw"]
+[gd_scene load_steps=11 format=3 uid="uid://bmr3qvfm57wsw"]
 
 [ext_resource type="Script" uid="uid://chtk58vsljwxp" path="res://scripts/npc.gd" id="1_bfr8n"]
 [ext_resource type="Texture2D" uid="uid://bxf5soeelfi7w" path="res://sprites/npc_1.png" id="2_8ldtk"]
@@ -55,9 +55,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yv0w"]
 size = Vector2(33, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfr8n"]
-size = Vector2(15, 18)
-
 [node name="npc" type="StaticBody2D"]
 script = ExtResource("1_bfr8n")
 
@@ -68,7 +65,6 @@ autoplay = "idle_npc"
 frame_progress = 0.729464
 
 [node name="texture" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(1, -17)
 texture = ExtResource("3_8ldtk")
 region_enabled = true
@@ -79,10 +75,6 @@ region_rect = Rect2(0, 0, 16, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_4yv0w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_bfr8n")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
