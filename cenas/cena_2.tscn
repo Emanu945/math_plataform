@@ -653,8 +653,8 @@ size_flags_horizontal = 4
 color = Color(0, 0, 0, 1)
 script = ExtResource("21_3v55s")
 
-[node name="controls" parent="." instance=ExtResource("22_4exa3")]
-
 [node name="pause_menu" parent="." instance=ExtResource("23_sklmt")]
+
+[node name="controls" parent="." instance=ExtResource("22_4exa3")]
 
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]

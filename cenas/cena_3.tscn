@@ -443,7 +443,6 @@ layer_0/tile_data = PackedInt32Array(983040, 786432, 6, 1048576, 786432, 7, 1114
 
 [node name="goal" parent="." instance=ExtResource("10_isilw")]
 position = Vector2(2601, 112)
-next_level = "res://cenas/boss.tscn"
 chests = Array[NodePath]([NodePath("../chest2"), NodePath("../chest3"), NodePath("../chest8")])
 
 [node name="door_inicial" type="AnimatedSprite2D" parent="."]
@@ -634,8 +633,6 @@ size_flags_horizontal = 4
 color = Color(0, 0, 0, 1)
 script = ExtResource("21_e14sq")
 
-[node name="controls" parent="." instance=ExtResource("22_xno7j")]
-
 [node name="Bloco4" parent="." instance=ExtResource("22_vk6gu")]
 position = Vector2(3416, 144)
 number = 4
@@ -653,5 +650,7 @@ position = Vector2(711, 112)
 number = 2
 
 [node name="pause_menu" parent="." instance=ExtResource("23_vk6gu")]
+
+[node name="controls" parent="." instance=ExtResource("22_xno7j")]
 
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]

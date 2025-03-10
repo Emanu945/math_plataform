@@ -667,9 +667,9 @@ size_flags_horizontal = 4
 color = Color(0, 0, 0, 1)
 script = ExtResource("21_1xie2")
 
-[node name="controls" parent="." instance=ExtResource("24_kkcb8")]
+[node name="pause_menu" parent="transition" instance=ExtResource("26_rxrqi")]
 
-[node name="pause_menu" parent="." instance=ExtResource("26_rxrqi")]
+[node name="controls" parent="." instance=ExtResource("24_kkcb8")]
 
 [connection signal="body_entered" from="warning_sign/area_sign" to="warning_sign" method="_on_area_sign_body_entered"]
 [connection signal="body_exited" from="warning_sign/area_sign" to="warning_sign" method="_on_area_sign_body_exited"]
