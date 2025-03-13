@@ -443,6 +443,7 @@ layer_0/tile_data = PackedInt32Array(983040, 786432, 6, 1048576, 786432, 7, 1114
 
 [node name="goal" parent="." instance=ExtResource("10_isilw")]
 position = Vector2(2601, 112)
+next_level = "res://cenas/cena_1.tscn"
 chests = Array[NodePath]([NodePath("../chest2"), NodePath("../chest3"), NodePath("../chest8")])
 
 [node name="door_inicial" type="AnimatedSprite2D" parent="."]
@@ -502,7 +503,7 @@ success_lines = Array[String](["Eu sabia que era 3, só estava brincando!"])
 
 [node name="npc3" parent="." instance=ExtResource("14_dxsi0")]
 position = Vector2(3117, 225)
-initial_lines = Array[String](["Eu já tenho o 7, mas preciso de 11!", "Qual número me falta?"])
+initial_lines = Array[String](["Eu já tenho o 7, mas preciso de 9!", "Qual número me falta?"])
 success_lines = Array[String]([])
 
 [node name="HUD" type="CanvasLayer" parent="."]
