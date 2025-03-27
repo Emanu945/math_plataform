@@ -35,3 +35,4 @@ func _unhandled_input(event: InputEvent) -> void:
 			visible = true
 			get_tree().paused = true
 			print("Game paused, paused state: ", get_tree().paused)
+			print('git')
